@@ -9,14 +9,14 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (params) => {
 });
 
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
-  // Использование Axios для выполнения GET-запроса по пути '/auth/fetchAuthMe'
+  // Использование Axios для выполнения GET-запроса по пути '/auth/me'
   const { data } = await axios.get('/auth/me');
   // Возвращение полученных данных
   return data;
 });
 
 export const fetchRegister = createAsyncThunk('auth/fetchRegister', async (params) => {
-  // Использование Axios для выполнения POST-запроса по пути '/auth/fetchRegister'
+  // Использование Axios для выполнения POST-запроса по пути '/auth/register'
   const { data } = await axios.post('/auth/register', params);
   // Возвращение полученных данных
   return data;
@@ -36,7 +36,7 @@ const authSlice = createSlice({
       state.data = null;
     },
   },
-  extraReducers: {
+  extraReducers: { //Можно было бы реализовать через switch case, но мне было лень
       // Обработка состояния ожидания (pending)
       [fetchAuth.pending]: (state) => {
         state.data = null;        
